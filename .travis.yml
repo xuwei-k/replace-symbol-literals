@@ -1,0 +1,14 @@
+language: scala
+dist: xenial
+jdk:
+- openjdk8
+- openjdk11
+script:
+- sbt scalafmtSbtCheck scalafmtCheck test:scalafmtCheck test
+cache:
+  directories:
+  - "$HOME/.ivy2/cache"
+  - "$HOME/.sbt/launchers"
+before_cache:
+- find $HOME/.ivy2/cache -name "ivydata-*.properties" | xargs rm
+- find $HOME/.ivy2/cache -name "*SNAPSHOT*" | xargs rm -rf
