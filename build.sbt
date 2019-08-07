@@ -7,6 +7,7 @@ lazy val commonSettings = Def.settings(
     organization := "com.github.xuwei-k",
     homepage := Some(url("https://github.com/xuwei-k/replace-symbol-literals")),
     licenses := Seq("MIT License" -> url("https://opensource.org/licenses/mit-license")),
+    description := "scalafix rule for replace deprecated scala.Symbol literals",
     scalaVersion := V.scala212,
     addCompilerPlugin(scalafixSemanticdb),
     releaseProcess := Seq[ReleaseStep](
