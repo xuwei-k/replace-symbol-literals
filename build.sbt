@@ -9,7 +9,9 @@ lazy val commonSettings = Def.settings(
     licenses := Seq("MIT License" -> url("https://opensource.org/licenses/mit-license")),
     description := "scalafix rule for replace deprecated scala.Symbol literals",
     scalaVersion := V.scala212,
+    crossScalaVersions := V.supportedScalaVersions,
     addCompilerPlugin(scalafixSemanticdb),
+    releaseCrossBuild := true,
     releaseProcess := Seq[ReleaseStep](
       checkSnapshotDependencies,
       inquireVersions,
@@ -18,7 +20,7 @@ lazy val commonSettings = Def.settings(
       setReleaseVersion,
       commitReleaseVersion,
       tagRelease,
-      releaseStepCommandAndRemaining("publishSigned"),
+      releaseStepCommandAndRemaining("+publishSigned"),
       setNextVersion,
       commitNextVersion,
       releaseStepCommand("sonatypeReleaseAll"),
