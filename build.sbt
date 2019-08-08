@@ -40,7 +40,37 @@ lazy val commonSettings = Def.settings(
       </scm>
     ),
     publishTo := sonatypePublishTo.value,
+    scalacOptions in (Compile, doc) ++= {
+      val hash = sys.process.Process("git rev-parse HEAD").lineStream_!.head
+      Seq(
+        "-sourcepath",
+        (baseDirectory in LocalRootProject).value.getAbsolutePath,
+        "-doc-source-url",
+        s"https://github.com/xuwei-k/replace-symbol-literals/tree/${hash}€{FILE_PATH}.scala"
+      )
+    },
+    scalacOptions ++= PartialFunction
+      .condOpt(CrossVersion.partialVersion(scalaVersion.value)) {
+        case Some((2, v)) if v >= 12 =>
+          Seq(
+            "-Ywarn-unused:imports",
+          )
+      }
+      .toList
+      .flatten,
+    scalacOptions ++= PartialFunction
+      .condOpt(CrossVersion.partialVersion(scalaVersion.value)) {
+        case Some((2, v)) if v <= 12 =>
+          Seq(
+            "-Yno-adapted-args",
+            "-Xfuture",
+          )
+      }
+      .toList
+      .flatten,
     scalacOptions ++= List(
+      "-deprecation",
+      "-unchecked",
       "-Yrangepos",
       "-P:semanticdb:synthetics:on"
     )
