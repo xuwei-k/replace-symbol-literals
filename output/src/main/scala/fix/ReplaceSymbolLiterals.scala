@@ -1,5 +1,7 @@
 package fix
 
+import scalaz.\/
+
 object ReplaceSymbolLiterals {
-  val foo = Symbol("bar")
+  def foo: Int \/ String = ???
 }

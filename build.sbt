@@ -9,6 +9,7 @@ lazy val commonSettings = Def.settings(
     licenses := Seq("MIT License" -> url("https://opensource.org/licenses/mit-license")),
     description := "scalafix rule for replace deprecated scala.Symbol literals",
     scalaVersion := V.scala212,
+    libraryDependencies += "org.scalaz" %% "scalaz-core" % "7.2.30",
     addCompilerPlugin(scalafixSemanticdb),
     releaseCrossBuild := true,
     releaseProcess := Seq[ReleaseStep](

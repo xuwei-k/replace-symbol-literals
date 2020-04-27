@@ -3,6 +3,8 @@ rule = ReplaceSymbolLiterals
  */
 package fix
 
+import scalaz.\/
+
 object ReplaceSymbolLiterals {
-  val foo = 'bar
+  def foo: \/[Int, String] = ???
 }
