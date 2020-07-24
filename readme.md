@@ -1,6 +1,6 @@
 # Replace `scala.Symbol` Literals
 
-[![Build Status](https://travis-ci.org/xuwei-k/replace-symbol-literals.svg?branch=master)](https://travis-ci.org/xuwei-k/replace-symbol-literals)
+[![Build Status](https://travis-ci.com/xuwei-k/replace-symbol-literals.svg?branch=master)](https://travis-ci.com/xuwei-k/replace-symbol-literals)
 
 <https://scalacenter.github.io/scalafix/docs/rules/external-rules.html>
 
