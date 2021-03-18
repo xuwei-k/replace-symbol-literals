@@ -39,11 +39,11 @@ lazy val commonSettings = Def.settings(
       </scm>
     ),
     publishTo := sonatypePublishTo.value,
-    scalacOptions in (Compile, doc) ++= {
+    (Compile / doc / scalacOptions) ++= {
       val hash = sys.process.Process("git rev-parse HEAD").lineStream_!.head
       Seq(
         "-sourcepath",
-        (baseDirectory in LocalRootProject).value.getAbsolutePath,
+        (LocalRootProject / baseDirectory).value.getAbsolutePath,
         "-doc-source-url",
         s"https://github.com/xuwei-k/replace-symbol-literals/tree/${hash}€{FILE_PATH}.scala"
       )
@@ -77,7 +77,7 @@ lazy val commonSettings = Def.settings(
 )
 
 commonSettings
-skip in publish := true
+publish / skip := true
 
 lazy val rules = project.settings(
   commonSettings,
@@ -87,27 +87,27 @@ lazy val rules = project.settings(
 
 lazy val input = project.settings(
   commonSettings,
-  skip in publish := true
+  publish / skip := true
 )
 
 lazy val output = project.settings(
   commonSettings,
-  skip in publish := true
+  publish / skip := true
 )
 
 lazy val tests = project
   .settings(
     commonSettings,
-    skip in publish := true,
+    publish / skip := true,
     libraryDependencies += "ch.epfl.scala" % "scalafix-testkit" % V.scalafixVersion % Test cross CrossVersion.full,
-    compile in Compile :=
-      compile.in(Compile).dependsOn(compile.in(input, Compile)).value,
+    (Compile / compile) :=
+      (Compile / compile).dependsOn(input / Compile / compile).value,
     scalafixTestkitOutputSourceDirectories :=
-      sourceDirectories.in(output, Compile).value,
+      (output / Compile / sourceDirectories).value,
     scalafixTestkitInputSourceDirectories :=
-      sourceDirectories.in(input, Compile).value,
+      (input / Compile / sourceDirectories).value,
     scalafixTestkitInputClasspath :=
-      fullClasspath.in(input, Compile).value,
+      (input / Compile / fullClasspath).value,
   )
   .dependsOn(rules)
   .enablePlugins(ScalafixTestkitPlugin)
