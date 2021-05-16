@@ -12,6 +12,5 @@ sbt shell
 
 ```
 > scalafixEnable
-> scalafix dependency:ReplaceSymbolLiterals@com.github.xuwei-k:replace-symbol-literals:0.1.1
-> test:scalafix dependency:ReplaceSymbolLiterals@com.github.xuwei-k:replace-symbol-literals:0.1.1
+> scalafixAll dependency:ReplaceSymbolLiterals@com.github.xuwei-k:replace-symbol-literals:0.1.1
 ```
