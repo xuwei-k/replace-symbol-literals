@@ -1,16 +1,3 @@
-# Replace `scala.Symbol` Literals
+# Moved https://github.com/xuwei-k/scalafix-rules
 
-<https://scalacenter.github.io/scalafix/docs/rules/external-rules.html>
-
-`project/scalafix.sbt`
-
-```scala
-addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.9.34")
-```
-
-sbt shell
-
-```
-> scalafixEnable
-> scalafixAll dependency:ReplaceSymbolLiterals@com.github.xuwei-k:replace-symbol-literals:0.1.1
-```
+https://github.com/xuwei-k/scalafix-rules/commit/5c9ace4fa298b5517a065c56e0e0d11599dd2059
